@@ -36,17 +36,38 @@ body {
 .book-card{
     flex-direction: column;
     align-self: center;
+    align-content: center;
+    text-align: center;
     padding: 2vh;
     border: 1px solid;
     border-color: red;
     min-width: 25%;
    
 }
-.book-card-button {
+
+
+.delete-button {
   width:100%;
-  display: flex;
-  text-align: center;
-  text-justify: center;
+  cursor: pointer;
+  border: none;
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  opacity: 0.8;
+  display: inline-block;
+
+  outline: none;
+ 
+
+
+
+}
+.delete-button:hover {
+  opacity: 1;
+  
+}
+.delete-button:active{
+  opacity: 0.5;
 }
 .open-button {
   background-color: #555;
