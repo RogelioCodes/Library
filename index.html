@@ -1,44 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css" />
     <title>Library</title>
 </head>
-<body>  
-    
+
+<body>
     <header class="header">
-        <button class="open-button"  new-book>NEW BOOK</button>
-      <h1 class="header__title">Library</h1>
+        <button class="open-button" new-book>NEW BOOK</button>
+        <h1 class="header__title">Library</h1>
     </header>
-    
-     
-   <div id = "container">
-  
-       <!-- <div class = [book-one]></div> -->
-   </div>
-   
-  <div class = "form-popup" id = "myForm">
-    <form class = "form-container">
-        <h2>ADD A NEW BOOK</h2>
-        <input type = "text" placeholder="Title" id = "title"  required>
-        <input type = "text" placeholder="Author" id = "author" required>
-        <input type = "text" placeholder="Pages" id = "pages" required>
-        <input type = "text" placeholder="Pages left" id = "pagesLeft" required>
-        <div class = "read-popup">
-            <label>Read?</label>
-            <input type = "checkbox" id = "read" >
-        </div>
-        <button type="submit" class="btn">Submit</button>
-        <button type="button" class="btn cancel" onclick="closeForm()">Cancel</button>
-    </form>
-  </div>
-  <div class="footer">
-    <p>Author: <a href="https://github.com/RogelioCodes">RogelioCodes</a></p>
-</div>
-    <script src = "script.js"></script>
+    <div id="container">
+    <!-- content will be inserted here via JS -->
+    </div>
+
+    <div class="form-popup" id="myForm">
+        <form class="form-container">
+            <h2>ADD A NEW BOOK</h2>
+            <input type="text" placeholder="Title" id="title" required>
+            <input type="text" placeholder="Author" id="author" required>
+            <input type="text" placeholder="Pages" id="pages" required>
+            <input type="text" placeholder="Pages left" id="pagesLeft" required>
+            <div class="read-popup">
+                <label>Read?</label>
+                <input type="checkbox" id="read">
+            </div>
+            <button type="submit" class="btn">Submit</button>
+            <button type="button" class="btn cancel" onclick="closeForm()">Cancel</button>
+        </form>
+    </div>
+    <div class="footer">
+        <p>Author: <a href="https://github.com/RogelioCodes">RogelioCodes</a></p>
+    </div>
+    <script src="script.js"></script>
 </body>
+
 </html>
