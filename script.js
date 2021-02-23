@@ -1,12 +1,5 @@
-// const book1 = new Book('The Hobbit', 'J.R.R. Tolkien', 295, true);
-// const book2 = new Book('The Chapening', 'Chappy Smalls', 300, false);
-// console.log(book1.info());
-// console.log(book2.info());
-
-console.log("hello");
 let myLibrary = [];
 //the constructor
-
 function Book(title, author, pages, pagesLeft, id, read) {
   this.title = title;
   this.author = author;
@@ -15,14 +8,8 @@ function Book(title, author, pages, pagesLeft, id, read) {
   this.id = id;
   this.read = read;
   this.info = function () {
-    if(this.read === true) return(title +  " by " + author + ", " + pages + " pages read.")
-    else return(title +  " by " + author + ", " + pagesLeft + " pages, not read yet.")
-    // return (
-    //   `${title}<br>` +
-    //   `By ${author}<br>` +
-    //   `Pages read: ${pages}` +
-    //   `<br>Pages left: ${pagesLeft}`
-    // );
+    if (this.read == true) return "Finished reading";
+    else return "Still in progress";
   };
 }
 
@@ -41,10 +28,8 @@ function closeForm() {
 
 const form = document.querySelector(".form-container");
 form.addEventListener("submit", (e) => {
-  console.log("clicked"), addBookToLibrary(e), closeForm();
+   addBookToLibrary(e), closeForm();
 });
-
-
 
 function addBookToLibrary(e) {
   e.preventDefault();
@@ -52,54 +37,52 @@ function addBookToLibrary(e) {
   let author = document.querySelector("#author").value;
   let pages = document.querySelector("#pages").value;
   let pagesLeft = document.querySelector("#pagesLeft").value;
-  // let read = document.querySelector("#read").value;
+  let read = document.querySelector("#read").checked;
 
   let id = myLibrary.length;
-  let newBook = new Book(title, author, pages, pagesLeft, id);
+  let newBook = new Book(title, author, pages, pagesLeft, id, read);
 
   document.querySelector("#title").value = "";
   document.querySelector("#author").value = "";
   document.querySelector("#pages").value = "";
   document.querySelector("#pagesLeft").value = "";
+
   if (
     myLibrary.some((Book) => Book.title === newBook.title) &&
     myLibrary.some((Book) => Book.author === newBook.author)
   ) {
     alert("This already exists in your library");
+    document.querySelector("#read").checked = false;
     return false;
   }
-  // console.log("newBook.id: " + newBook.id)
 
   myLibrary.push(newBook);
-
+  document.querySelector("#read").checked = false;
   writeToDisplay();
 }
-
-const book1 = new Book("The Shining", "Stephen King", 300, 200,0, false);
-const book2 = new Book("Grapes Of Wrath", "John Steinback", 400, 5000,1, false);
-const book3 = new Book("Born for Liberty", "chap Steinback", 400, 5000,2, true);
-myLibrary.push(book1);
-myLibrary.push(book2);
-myLibrary.push(book3);
+//test values
+// const book1 = new Book("The Shining", "Stephen King", 300, 200,0, false);
+// const book2 = new Book("Grapes Of Wrath", "John Steinback", 400, 5000,1, false);
+// const book3 = new Book("Born for Liberty", "chap Steinback", 400, 5000,2, true);
+// myLibrary.push(book1);
+// myLibrary.push(book2);
+// myLibrary.push(book3);
 var container = document.getElementById("container");
 
 function writeToDisplay() {
   for (let i = 0; i < myLibrary.length; i++) {
     var displayCard = document.getElementById("book-card-" + i);
-    console.log("display card: " + displayCard);
     if (!displayCard) {
       const displayCard = document.createElement("div");
       displayCard.classList.add("book-card");
       displayCard.id = "book-card-" + i;
-      displayCard.dataset.indexNumber = i ;
-      // displayCard.innerHTML = myLibrary[i].title;
-      
+      displayCard.dataset.indexNumber = i;
+
       const displayCardTitle = document.createElement("div");
       displayCardTitle.classList.add("display-title");
       displayCardTitle.id = "title-card-" + i;
       displayCardTitle.innerHTML = myLibrary[i].title;
-      displayCardTitle.dataset.indexNumber = i ;
-
+      displayCardTitle.dataset.indexNumber = i;
 
       const displayCardAuthor = document.createElement("div");
       displayCardAuthor.classList.add("display-author");
@@ -110,30 +93,34 @@ function writeToDisplay() {
       displayCardPages.classList.add("display-pages");
       displayCardPages.id = "pages-card-" + i;
       displayCardPages.innerHTML = "Pages: " + myLibrary[i].pages;
-      
+
       const displayCardPagesLeft = document.createElement("div");
       displayCardPagesLeft.classList.add("display-pages-left");
       displayCardPagesLeft.id = "pages-left-card-" + i;
       displayCardPagesLeft.innerHTML = "Pages left: " + myLibrary[i].pagesLeft;
-      
+
       const displayCardInfo = document.createElement("div");
       displayCardInfo.classList.add("display-info");
       displayCardInfo.id = "info-card-" + i;
       displayCardInfo.innerHTML = myLibrary[i].info();
-      displayCardInfo.dataset.indexNumber = i ;
+      displayCardInfo.dataset.indexNumber = i;
 
       const displayCardButton = document.createElement("button");
       displayCardButton.classList.add("delete-button");
       displayCardButton.id = "delete-card-" + i;
       displayCardButton.innerHTML = "DELETE";
-      displayCardButton.dataset.indexNumber = i ;
+      displayCardButton.dataset.indexNumber = i;
 
       const displayCardReadButton = document.createElement("button");
       displayCardReadButton.classList.add("read-button");
       displayCardReadButton.id = "read-card-" + i;
       displayCardReadButton.innerHTML = "READ";
-      displayCardReadButton.dataset.indexNumber = i ;
-
+      displayCardReadButton.dataset.indexNumber = i;
+      if (myLibrary[i].read == true) {
+        displayCardReadButton.style.backgroundColor = "#4caf50";
+      } else {
+        displayCardReadButton.style.backgroundColor = "red";
+      }
       container.appendChild(displayCard);
       displayCard.appendChild(displayCardTitle);
       displayCard.appendChild(displayCardAuthor);
@@ -144,99 +131,49 @@ function writeToDisplay() {
       displayCard.appendChild(displayCardReadButton);
       displayCard.appendChild(displayCardButton);
     }
-   
-    
   }
-  // const deleteBookBtn = document.getElementsByClassName("delete-button");
 
-  for(let i = 0 ; i < myLibrary.length ; i++){
-    document.getElementById("delete-card-"+i).onclick = function(e){
-      deleteBook(e)
-      // alert(e.target.parentNode.id);
-    }
-    
+  for (let i = 0; i < myLibrary.length; i++) {
+    document.getElementById("delete-card-" + i).onclick = function (e) {
+      deleteBook(e);
+    };
   }
-  for(let i = 0 ; i < myLibrary.length ; i++){
-    document.getElementById("read-card-"+i).onclick = function(e){
-      console.log('clicled'),
+  for (let i = 0; i < myLibrary.length; i++) {
+    document.getElementById("read-card-" + i).onclick = function (e) {
       Book.prototype.changeReadStatus(e);
-      // Add the showNameAndColor method to the Plant prototype property
-   
+    };
   }
-  
-      // alert(e.target.parentNode.id);
-    }
-    
-  }
-Book.prototype.changeReadStatus =  function (e) {
-  let thisID =  e.target.parentNode.dataset.indexNumber;
- console.log("thisID: " + thisID);
-  displayCardInfo = document.getElementById("info-card-"+thisID);
+}
+Book.prototype.changeReadStatus = function (e) {
+  let thisID = e.target.parentNode.dataset.indexNumber;
 
-  if(myLibrary[thisID].read==true){
-    myLibrary[thisID].read = false ;
+  displayCardInfo = document.getElementById("info-card-" + thisID);
+
+  if (myLibrary[thisID].read == true) {
+    myLibrary[thisID].read = false;
+    document.getElementById("read-card-" + thisID).style.backgroundColor =
+      "red";
   } else {
     myLibrary[thisID].read = true;
+    document.getElementById("read-card-" + thisID).style.backgroundColor =
+      "#4caf50";
   }
-  document.getElementById("info-card-"+thisID).innerHTML =  myLibrary[thisID].info();
+  document.getElementById("info-card-" + thisID).innerHTML = myLibrary[
+    thisID
+  ].info();
+};
 
-   }
-
-
-writeToDisplay();
-
-// var deleteBookBtn = document.getElementById('book-card-0');
-// deleteBookBtn.addEventListener("click", (e) => {
-//       deleteBook(e)
-     
-//     });
-
-// You will need to associate your DOM elements with the actual book objects in some way. 
-// One easy solution is giving them a data-attribute that corresponds to the index of the library array.
-function deleteBook(e){
-  
-  let thisID =  e.target.parentNode.dataset.indexNumber;
-  console.log("thisID: " + thisID);
-  let bookTitle = e.target.parentNode.dataset.title;
-  console.log("bookTitle: " + bookTitle);
+function deleteBook(e) {
+  let thisID = e.target.parentNode.dataset.indexNumber;
+  // let bookTitle = e.target.parentNode.dataset.title;
   myLibrary = myLibrary.filter((Book) => Book.id != thisID);
 
- console.log(myLibrary)
+  var deleteThis = document.getElementById(e.target.parentNode.id);
+  deleteThis.remove();
 
- var deleteThis = document.getElementById(e.target.parentNode.id)
- deleteThis.remove()
+  var displayCard = document.getElementById("book-card-" + thisID);
 
- var displayCard = document.getElementById("book-card-" + thisID);
-
- if (!displayCard){
-   myLibrary.pop();
- }
-// var displayCard = document.getElementsByClassName('book-card');
-  //  console.log("book: " + e.srcElement.id)
-  //  console.log("book: " + e.srcElement.displayCard.id)
-
-//   console.log(displayCard)
-//   let thisID = e.srcElement.id.replace(/\D/g, "");
-//   console.log(displayCard[thisID].innerHTML)
-//   let bookTitle = displayCard[thisID].innerHTML;
-// console.log(displayCard[thisID].innerHTML)
- 
-//   console.log("displayCard: " + displayCard)
-//   console.log("dis" + displayCard[thisID])
-//   console.log("thisID: " +thisID)
-//   // var displayCard = document.getElementsByClassName('book-card');
-//   //search for < index then parse
- 
-  
-//   // bookTitle = displayCard[thisID].innerHTML.substring(0,10);
-
-//   let strIndex = bookTitle.search('<');
-//   bookTitle = displayCard[thisID].innerHTML.substring(0, strIndex);
-//   console.log("strIndex: " + strIndex)
-//  console.log(bookTitle)
-// // console.log(JSON.stringify(e.target))
-//   myLibrary = myLibrary.filter((Book) => Book.title != bookTitle);
-//   console.log(myLibrary)
-//   var deleteThis = document.getElementById(e.srcElement.id)
-//   deleteThis.remove()
+  if (!displayCard) {
+    myLibrary.pop();
+  }
 }

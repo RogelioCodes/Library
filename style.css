@@ -5,70 +5,87 @@
   padding: 0;
   margin: 0;
   font-weight: normal;
-  font-family: "Rubik", sans-serif;
+
+  font-family: "Bebas Neue", sans-serif, cursive;
 }
 body {
- 
   /* background: #14213d; */
   background: #f5f4f4;
+}
+/* HEADER */
 
+.header {
+  padding: 1rem;
+  background-color: #4caf50;
+  
 }
 
+.header__title {
+  font-family: "Bebas Neue", cursive;
+  font-size: 5rem;
+  text-align: center;
+}
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  max-height: 5vh;
+  padding-left: 0.625rem;
+  color: black;
+  text-align: center;
+  display: flex;
+  align-items: flex-start;
+}
+.footer a:visited {
+  color: blueviolet;
+}
 #container {
-    margin: 5.875rem auto;
-    padding: 1.25rem;
-   
-  width: 50%;
-  border: 3px solid green;
+  margin: 5.875rem auto;
+  padding: 1.25rem;
+
+  /* border: 3px solid green; */
 
   display: flex;
- 
-  height: 5vh;
-  
   flex-wrap: wrap;
-  height: 400px;
+  height: 100%;
   align-content: center;
   justify-content: space-around;
   /* width: 40%; */
-    /* flex-direction: row; */
-  }
- 
-.book-card{
-    flex-direction: column;
-    align-self: center;
-    align-content: center;
-    text-align: center;
-    padding: 2vh;
-    border: 1px solid;
-    border-color: red;
-    min-width: 25%;
-   
+  /* flex-direction: row; */
 }
 
-
-.delete-button {
-  width:100%;
+.book-card {
+  flex-direction: column;
+  align-self: center;
+  align-content: center;
+  text-align: center;
+  font-size: 3vh;
+  padding: 2vh;
+  border: 1px solid;
+  border-color: #666565;
+  min-width: 25%;
+}
+.book-card button {
+  width: 100%;
   cursor: pointer;
   border: none;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   padding: 16px 20px;
+  margin: 5px;
   opacity: 0.8;
   display: inline-block;
-
   outline: none;
- 
-
-
-
 }
-.delete-button:hover {
+
+.book-card button:hover {
   opacity: 1;
-  
 }
-.delete-button:active{
+.book-card button:active {
   opacity: 0.5;
 }
+
 .open-button {
   background-color: #555;
   color: white;
@@ -76,27 +93,37 @@ body {
   border: none;
   cursor: pointer;
   opacity: 0.8;
-  
+
+  position: absolute;
 }
 .form-popup {
   display: none;
   margin: 0;
   position: fixed;
   top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
- 
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+
   border: 3px solid #f1f1f1;
   z-index: 9;
+}
+.read-popup{
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    padding: 1vh;
+    margin: 1vh;
 }
 .form-container {
   max-width: 300px;
   padding: 10px;
   background-color: white;
 }
+
 /* Full-width input fields */
-.form-container input[type=text], .form-container input[type=password] {
+.form-container input[type="text"],
+.form-container input[type="password"] {
   width: 100%;
   padding: 15px;
   margin: 5px 0 22px 0;
@@ -104,19 +131,20 @@ body {
   background: #f1f1f1;
 }
 /* When the inputs get focus, do something */
-.form-container input[type=text]:focus, .form-container input[type=password]:focus {
+.form-container input[type="text"]:focus,
+.form-container input[type="password"]:focus {
   background-color: #ddd;
   outline: none;
 }
 /* Set a style for the submit/login button */
 .form-container .btn {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   padding: 16px 20px;
   border: none;
   cursor: pointer;
   width: 100%;
-  margin-bottom:10px;
+  margin-bottom: 10px;
   opacity: 0.8;
 }
 
@@ -126,6 +154,7 @@ body {
 }
 
 /* Add some hover effects to buttons */
-.form-container .btn:hover, .open-button:hover {
+.form-container .btn:hover,
+.open-button:hover {
   opacity: 1;
 }
