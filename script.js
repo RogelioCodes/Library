@@ -169,22 +169,18 @@ function writeToDisplay() {
     
   }
 Book.prototype.changeReadStatus =  function (e) {
-  displayCardInfo = document.getElementById("info-card-"+thisID);
   let thisID =  e.target.parentNode.dataset.indexNumber;
-console.log(thisID )
-  if(this.read==true){
-      
+ console.log("thisID: " + thisID);
+  displayCardInfo = document.getElementById("info-card-"+thisID);
 
-    this.read = false 
+  if(myLibrary[thisID].read==true){
+    myLibrary[thisID].read = false ;
   } else {
-    this.read=true;
+    myLibrary[thisID].read = true;
   }
-  myLibrary[0].read = true ;
-  document.getElementById("info-card-0").innerHTML =  myLibrary[0].info();
+  document.getElementById("info-card-"+thisID).innerHTML =  myLibrary[thisID].info();
 
- 
-
-  console.log("this.read: " + this.read) }
+   }
 
 
 writeToDisplay();
